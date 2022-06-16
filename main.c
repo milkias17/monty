@@ -7,7 +7,6 @@ char *line;
 int main(int argc, char *argv[])
 {
 	FILE *fp;
-	char ch;
 	int line_number = 0;
 	void (*f)(stack_t **stack, unsigned int line_number);
 	stack_t *stack;
@@ -40,7 +39,8 @@ int main(int argc, char *argv[])
 		f(&stack, line_number);
 	}
 
-
+	free_stack(stack);
+	free(line);
 
 	return (0);
 }

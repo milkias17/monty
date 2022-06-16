@@ -42,7 +42,7 @@ stack_t *push_to_head(stack_t **head, int n)
 	* Description: pushes a new value onto the stack
 	* Return: void
 */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *current;
 	stack_t *node;
@@ -74,6 +74,8 @@ void push(stack_t **stack, unsigned int line_number)
 
 	current->next = node;
 	node->prev = current;
+
+	free(tokenized_line);
 }
 
 /**
@@ -83,7 +85,7 @@ void push(stack_t **stack, unsigned int line_number)
 	* Description: prints all values in the stack
 	* Return: void
 */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *current = *stack;
 
@@ -97,6 +99,25 @@ void pall(stack_t **stack, unsigned int line_number)
 	}
 }
 
+/**
+	* free_stack - frees the stack from memory
+	* @stack: stack to free
+	* Description: frees the stack from memory
+	* Return: void
+*/
+void free_stack(stack_t *stack)
+{
+	stack_t *current;
+	stack_t *tmp;
+
+	current = stack;
+	while (current != NULL)
+	{
+		tmp = current;
+		free(current);
+		current = tmp->next;
+	}
+}
 
 
 

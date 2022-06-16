@@ -1,7 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
 /**
 	* get_line - returns the current line in file
@@ -44,7 +41,7 @@ char **get_tokenized_line()
 	char **res;
 	char *token;
 	int pos = 0;
-	char *tmp = strdup(line);
+	char *tmp;
 
 	res = malloc(sizeof(char *) * 3);
 	if (res == NULL)
@@ -53,6 +50,7 @@ char **get_tokenized_line()
 		exit(EXIT_FAILURE);
 	}
 
+	tmp = _strdup(line);
 	token = strtok(tmp, delims);
 	while (pos < 2)
 	{

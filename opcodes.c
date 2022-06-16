@@ -37,7 +37,6 @@ void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number)
 		{"pall", pall}
 	};
 	int i = 0;
-	void (*fo)(stack_t **stack, unsigned int line_number);
 
 	if (is_valid_op(sep_cmd[0]) == 0)
 	{
@@ -53,6 +52,7 @@ void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number)
 		}
 	}
 
+	free(sep_cmd);
 	return (NULL);
 }
 

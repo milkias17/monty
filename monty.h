@@ -1,6 +1,8 @@
 #ifndef MY_H
 #define MY_H
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 extern char *line;
 
@@ -39,4 +41,6 @@ void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number);
 char **get_tokenized_line();
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
+char *_strdup(char *str);
 #endif
