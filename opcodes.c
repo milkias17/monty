@@ -15,7 +15,7 @@ int is_valid_op(char *op_type)
 	int i = 0;
 	int size = 2;
 
-	for(; i < size; i++)
+	for (; i < size; i++)
 	{
 		if (strcmp(op_type, valid_op_codes[i]) == 0)
 			return (1);
@@ -24,7 +24,7 @@ int is_valid_op(char *op_type)
 }
 
 /**
-	* get_op - returns the function for the given op
+	* get_op_func - returns the function for the given op
 	* @line_number: line number where call is
 	* Description: returns the function for the given op
 	* Return: function
@@ -45,9 +45,9 @@ void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	for(; i < 2; i++)
+	for (; i < 2; i++)
 	{
-		if(strcmp(sep_cmd[0], op_mappers[i].opcode) == 0)
+		if (strcmp(sep_cmd[0], op_mappers[i].opcode) == 0)
 		{
 			return (op_mappers[i].f);
 		}

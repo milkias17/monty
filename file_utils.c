@@ -34,17 +34,6 @@ char *get_line(FILE *fp)
 
 
 /**
-	* validate_line - checks whether the current line is valid
-	* Description: checks whether the current line is valid
-	* Return: int
-*/
-int validate_line()
-{
-	int length = 0;
-	return (0);
-}
-
-/**
 	* get_tokenized_line - returns an array of line sep by space
 	* Description: returns an array of line sep by space
 	* Return: char
@@ -52,11 +41,12 @@ int validate_line()
 char **get_tokenized_line()
 {
 	const char *delims = " ";
-	char **res = malloc(sizeof(char *) * 3);
+	char **res;
 	char *token;
 	int pos = 0;
 	char *tmp = strdup(line);
 
+	res = malloc(sizeof(char *) * 3);
 	if (res == NULL)
 	{
 		printf("Error: malloc failed\n");
