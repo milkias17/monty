@@ -43,4 +43,7 @@ void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 char *_strdup(char *str);
+void handle_error(char *error_type);
+int is_valid_line(char *line);
+int is_number(char *str);
 #endif

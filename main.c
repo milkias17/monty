@@ -13,15 +13,11 @@ int main(int argc, char *argv[])
 
 	stack = malloc(sizeof(stack_t));
 	if (stack == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		handle_error("malloc");
 
 	if (argc > 2 || argc == 1)
 	{
-		printf("USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		handle_error("usage");
 	}
 
 	fp = fopen(argv[1], "r");
@@ -34,7 +30,11 @@ int main(int argc, char *argv[])
 
 	while ((line = get_line(fp)) != NULL)
 	{
+		if (is_valid_line(line) != 1)
+			continue;
+
 		line_number++;
+		/* printf("Line number %i is now %s\n", line_number, line); */
 		f = get_op_func(line_number);
 		f(&stack, line_number);
 	}

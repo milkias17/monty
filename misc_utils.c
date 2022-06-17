@@ -17,8 +17,7 @@ char *_strdup(char *str)
 	new_str = malloc(sizeof(char) * strlen(str));
 	if (new_str == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		handle_error("malloc");
 	}
 
 	for (; str[i] != '\0'; i++)
@@ -27,4 +26,25 @@ char *_strdup(char *str)
 	}
 
 	return (new_str);
+}
+
+/**
+	* is_number - checks if a string can be converted to an int
+	* @str: string to check if is a number
+	* Description: checks if a string can be converted to an int
+	* Return: int
+*/
+int is_number(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		if (str[i] < 48 || str[i] > 57)
+			return (0);
+
+		i++;
+	}
+
+	return (1);
 }

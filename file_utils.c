@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
 	* get_line - returns the current line in file
@@ -8,22 +9,22 @@
 */
 char *get_line(FILE *fp)
 {
-	int size = 100;
+	int size = 1000000;
 	char *res;
 	char ch;
+	int i = 0;
 
 	res = malloc(sizeof(char) * size);
 	if (res == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		handle_error("malloc");
 
 	while ((ch = fgetc(fp)) != '\n')
 	{
 		if (ch == EOF)
 			return (NULL);
+
 		strncat(res, &ch, 1);
+		i++;
 	}
 
 	return (res);
@@ -46,8 +47,7 @@ char **get_tokenized_line()
 	res = malloc(sizeof(char *) * 3);
 	if (res == NULL)
 	{
-		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		handle_error("malloc");
 	}
 
 	tmp = _strdup(line);
@@ -60,4 +60,22 @@ char **get_tokenized_line()
 	res[pos] = NULL;
 
 	return (res);
+}
+
+/**
+	* is_valid_line - checks if a line is valid
+	* Description: checks if a line is valid
+	* Return: int
+*/
+int is_valid_line(char *line)
+{
+	int i = 0;
+
+	for (; line[i] != '\0'; i++)
+	{
+		if (line[i] != ' ')
+			return (1);
+	}
+
+	return (0);
 }

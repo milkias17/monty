@@ -38,6 +38,10 @@ void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number)
 	};
 	int i = 0;
 
+	/* for (int j = 0; sep_cmd[j] != NULL; j++) { */
+	/* 	printf("Tokenized string at %i is: %s\n", j, sep_cmd[j]); */
+	/* } */
+
 	if (is_valid_op(sep_cmd[0]) == 0)
 	{
 		fprintf(stderr, "L%i: unknown instruction %s\n", line_number, sep_cmd[0]);
