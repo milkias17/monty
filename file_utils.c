@@ -64,6 +64,7 @@ char **get_tokenized_line()
 
 /**
 	* is_valid_line - checks if a line is valid
+	* @line: line to check if is valid
 	* Description: checks if a line is valid
 	* Return: int
 */

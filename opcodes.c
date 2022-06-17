@@ -11,9 +11,10 @@
 */
 int is_valid_op(char *op_type)
 {
-	char *valid_op_codes[] = {"push", "pall"};
+	char *valid_op_codes[] = {"push", "pall", "pint", "pop",
+		"swap", "add", "nop"};
 	int i = 0;
-	int size = 2;
+	int size = 7;
 
 	for (; i < size; i++)
 	{
@@ -32,10 +33,14 @@ int is_valid_op(char *op_type)
 void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number)
 {
 	char **sep_cmd = get_tokenized_line();
-	instruction_t op_mappers[3] = {
+	instruction_t op_mappers[7] = {
 		{"push", push},
 		{"pall", pall},
-		{"pint", pint}
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop}
 	};
 	int i = 0;
 
@@ -45,10 +50,11 @@ void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	for (; i < 2; i++)
+	for (; i < 7; i++)
 	{
 		if (strcmp(sep_cmd[0], op_mappers[i].opcode) == 0)
 		{
+			free(sep_cmd);
 			return (op_mappers[i].f);
 		}
 	}

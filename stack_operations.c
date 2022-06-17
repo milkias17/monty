@@ -52,14 +52,15 @@ void push(stack_t **stack, unsigned int line_number)
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		handle_error("malloc");
 	}
 
 	tokenized_line = get_tokenized_line();
 
 	if (tokenized_line[1] == NULL || is_number(tokenized_line[1]) == 0)
 	{
+		free(tokenized_line);
+		free(node);
 		fprintf(stderr, "L%i: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -94,7 +95,11 @@ void push(stack_t **stack, unsigned int line_number)
 */
 void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
-	stack_t *current = *stack;
+	stack_t *current;
+
+	if (*stack == NULL)
+		return;
+	current = *stack;
 
 	while (current->next != NULL)
 		current = current->next;

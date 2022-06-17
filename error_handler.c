@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 #include <string.h>
 
 /**
@@ -16,7 +17,7 @@ void handle_error(char *error_type)
 	}
 	else if (strcmp(error_type, "usage") == 0)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 

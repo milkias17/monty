@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	if (stack == NULL)
 		handle_error("malloc");
 
-	if (argc > 2 || argc == 1)
+	if (argc != 2)
 	{
 		handle_error("usage");
 	}
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
 	if (fp == NULL)
 	{
-		printf("Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
@@ -34,7 +34,6 @@ int main(int argc, char *argv[])
 			continue;
 
 		line_number++;
-		/* printf("Line number %i is now %s\n", line_number, line); */
 		f = get_op_func(line_number);
 		f(&stack, line_number);
 	}
