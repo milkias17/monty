@@ -123,6 +123,26 @@ void free_stack(stack_t *stack)
 	}
 }
 
+/**
+	* pint - prints the value at the top of the stack
+	* @stack: stack to operate on
+	* @line_number: line number where op is called
+	* Description: prints the value at the top of the stack
+	* Return: void
+*/
+void pint(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current;
 
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
+	current = *stack;
+	while (current->next != NULL)
+		current = current->next;
 
+	printf("%i\n", current->n);
+}

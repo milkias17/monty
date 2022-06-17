@@ -40,6 +40,7 @@ char *get_line(FILE *fp);
 void (*get_op_func(int line_number))(stack_t **stack, unsigned int line_number);
 char **get_tokenized_line();
 void push(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 char *_strdup(char *str);
